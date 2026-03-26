@@ -1,6 +1,52 @@
 # forestpro-videos
-dokumentasi pages wp forestpro
-`<style>
+
+Dokumentasi halaman video dinamis berbasis WordPress untuk **ForestPro**.
+
+Sistem ini memungkinkan menampilkan banyak video (32+) hanya dengan **1 halaman** menggunakan parameter URL.
+
+---
+
+##  Konsep
+
+Menggunakan satu halaman:
+
+```
+https://www.forestpro.id/buku/
+```
+
+Dengan parameter:
+
+```
+?v=nama-video
+```
+
+Contoh:
+
+```
+https://www.forestpro.id/buku/?v=anis-bentet-kecil
+```
+
+---
+
+##  Fitur
+
+* 1 halaman untuk banyak video
+* Fullscreen video (mobile friendly)
+* Autoplay + inline play
+* Tanpa UI mengganggu (admin bar, cookie, dll)
+* Siap untuk QR Code (buku fisik)
+* Future-proof (bisa pindah ke React / sistem lain)
+
+---
+
+##  Implementasi
+
+Tambahkan kode berikut ke halaman WordPress (`/buku`) menggunakan HTML block / PageLayer.
+
+###  Full Code
+
+```html
+<style>
 html, body {
   margin: 0;
   padding: 0;
@@ -11,13 +57,11 @@ html, body {
 body.admin-bar {
   margin-top: 0 !important;
 }
-
-
 #wpadminbar {
   display: none !important;
 }
 
-/* Override Pagelayer biar ga ada hijau */
+/* Override Pagelayer */
 .pagelayer-wrap,
 .pagelayer-row,
 .pagelayer-col,
@@ -27,6 +71,7 @@ body.admin-bar {
   background: black !important;
 }
 
+/* Hilangkan tombol cookie */
 .cookieadmin_re_consent {
   display: none !important;
 }
@@ -41,19 +86,18 @@ body.admin-bar {
 .video-wrapper video {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* ganti ke cover kalau mau full crop */
+  object-fit: contain;
   display: block;
 }
 </style>
 
 <div class="video-wrapper">
-  <video id="vid" autoplay playsinline controls controlsList="nodownload">
+  <video id="vid" autoplay muted playsinline controls controlsList="nodownload">
     <source id="source" src="" type="video/mp4">
   </video>
 </div>
 
 <script>
-// ===== DAFTAR VIDEO =====
 const base = "https://amaturalist-vault.s3.ap-southeast-3.amazonaws.com/public/";
 
 const videos = {
@@ -95,11 +139,67 @@ const videos = {
 const params = new URLSearchParams(window.location.search);
 const v = params.get("v");
 
-// default (HARUS ADA di list)
 const defaultVideo = "anis-bentet-kecil";
 
 const selected = videos[v] ? videos[v] : videos[defaultVideo];
-document.getElementById("source").src = selected;
 
+document.getElementById("source").src = selected;
 document.getElementById("vid").load();
-</script>`
+</script>
+```
+
+---
+
+##  Contoh URL
+
+```
+https://www.forestpro.id/buku/?v=anis-bentet-kecil
+https://www.forestpro.id/buku/?v=kakatua-raja
+https://www.forestpro.id/buku/?v=udang-merah-papua
+```
+
+---
+
+##  Cara Kerja
+
+1. Ambil parameter URL `?v=`
+2. Cocokkan dengan object `videos`
+3. Set `<source>` video secara dinamis
+4. Reload video
+
+---
+
+##  Catatan Penting
+
+* Nama slug **harus konsisten**
+* Jangan ubah slug setelah QR dicetak
+* Pastikan semua file video tersedia di S3
+
+---
+
+##  Struktur URL yang Direkomendasikan
+
+```
+/buku?v=nama-video
+```
+
+Contoh:
+
+```
+/buku?v=anis-bentet-kecil
+```
+
+---
+
+##  Pengembangan Selanjutnya
+
+* Routing tanpa query (`/buku/anis-bentet-kecil`)
+* Auto next video
+* Swipe navigation (seperti TikTok)
+* Integrasi React / SPA
+
+---
+
+##  License
+
+Internal use – ForestPro
