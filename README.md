@@ -61,7 +61,6 @@ body.admin-bar {
   display: none !important;
 }
 
-/* Override Pagelayer */
 .pagelayer-wrap,
 .pagelayer-row,
 .pagelayer-col,
@@ -71,18 +70,15 @@ body.admin-bar {
   background: black !important;
 }
 
-/* Hilangkan tombol cookie */
 .cookieadmin_re_consent {
   display: none !important;
 }
 
-/* Wrapper fullscreen */
 .video-wrapper {
   width: 100vw;
   height: 100dvh;
 }
 
-/* Video */
 .video-wrapper video {
   width: 100%;
   height: 100%;
