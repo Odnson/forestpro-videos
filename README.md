@@ -25,7 +25,7 @@ Contoh:
 ```
 https://www.forestpro.id/buku/?v=anis-bentet-kecil
 ```
-
+* list lengkap url ada di 
 ---
 
 ##  Fitur
@@ -191,14 +191,6 @@ Contoh:
 
 ---
 
-##  Pengembangan Selanjutnya
-
-* Routing tanpa query (`/buku/anis-bentet-kecil`)
-* Auto next video
-* Swipe navigation (seperti TikTok)
-* Integrasi React / SPA
-
----
 
 ##  License
 
