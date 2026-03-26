@@ -25,7 +25,7 @@ Contoh:
 ```
 https://www.forestpro.id/buku/?v=anis-bentet-kecil
 ```
-* list lengkap url ada di 
+Lihat daftar lengkap URL di [list_url.md](./list_url.md)
 ---
 
 ##  Fitur
